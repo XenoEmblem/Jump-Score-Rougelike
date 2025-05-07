@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     CapsuleCollider2D _bodyCollider;
     Animator _animator;
     float _timeInAir, _coyoteTimer;
+    Upgrades _upgrades;
 
     void OnEnable()
     {
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
         _footCollider = GetComponent<BoxCollider2D>();
         _playerInput = GetComponent<PlayerInput>();
         _animator = GetComponent<Animator>();
+        _upgrades = GetComponent<Upgrades>();
     }
 
     void Update()
@@ -45,7 +47,6 @@ public class PlayerController : MonoBehaviour
         FlipSprite();
         CoyoteTimer();
         HandleJump();
-        //HandleClimb();
         GravityDelay();
     }
 
@@ -131,11 +132,7 @@ public class PlayerController : MonoBehaviour
             _coyoteTimer -= Time.deltaTime;
         }
     }
-	// void HandleClimb()
-	// {
- //        if (_bodyCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")))
- //        {
- //            
- //        }
-	// }
+    
+    
+    
 }
