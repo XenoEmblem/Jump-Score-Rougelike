@@ -50,6 +50,11 @@ public class GameState : MonoBehaviour
         _lives--;
     }
 
+    public int getScore()
+    {
+        return _score;
+    }
+
     public void DestroyState()
     {
         Destroy(gameObject);

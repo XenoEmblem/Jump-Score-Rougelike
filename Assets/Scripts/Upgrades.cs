@@ -12,24 +12,47 @@ public class Upgrades : MonoBehaviour
     
     
     PlayerController _playerController;
-    int doubleJumpUpgrades = 0;
-    int floatingUpgrades = 0;
+    GameState _gameState;
+    
+    int _doubleJumpUpgrades = 0;
+    int _floatingUpgrades = 0;
+    int _currentPriceDoubleJump = 0;
+    int _currentPriceFloating = 0;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        _gameState = GameObject.Find("GameState").GetComponent<GameState>();
+        _currentPriceDoubleJump = _baseScorePriceDoubleJump;
+        _currentPriceFloating = _baseScorePriceFloating;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PurchaseDoubleJump()
     {
-        
+        if (_gameState.getScore() >= _currentPriceDoubleJump)
+        {
+            _doubleJumpUpgrades++;
+            _currentPriceDoubleJump = _currentPriceDoubleJump + (_priceIncreaseDoubleJump * _doubleJumpUpgrades);
+        }
     }
 
-    public int _getNumOfDoubleJumps()
+    public void PurchaseFloating()
     {
-        return doubleJumpUpgrades;
+        if (_gameState.getScore() >= _currentPriceFloating)
+        {
+            _floatingUpgrades++;
+            _currentPriceFloating = _currentPriceFloating + (_priceIncreaseFloating * _floatingUpgrades);
+        }
     }
-    
+
+    public int GetNumOfDoubleJumps()
+    {
+        return _doubleJumpUpgrades;
+    }
+
+    public float GetFloatingTime()
+    {
+        return (float)(_floatingUpgrades * 1.5);
+    }
 }
