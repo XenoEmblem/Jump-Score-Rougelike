@@ -6,7 +6,6 @@ public class GameState : MonoBehaviour
 
     [SerializeField] TMP_Text _scoreText;
     [SerializeField] TMP_Text _livesText;
-    [SerializeField] private int _pointsPerDestroyed = 45; 
 
     int _score;
     int _lives;
@@ -40,9 +39,9 @@ public class GameState : MonoBehaviour
         _livesText.text = _lives.ToString();
     }
 
-    public void AddScore()
+    public void AddScore(int pointsPerDestroyed)
     {
-        _score += _pointsPerDestroyed;
+        _score += pointsPerDestroyed;
     }
 
     public void RemoveLives()

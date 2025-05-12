@@ -22,8 +22,10 @@ public class PlayerController : MonoBehaviour
     Upgrades _upgrades;
     GameObject _upgradeMenu;
 
-    private int _doubleJumps = 0;
-    private float _floatingTime = 0;
+    private int _doubleJumps = 1;
+    private int _doubleJumpsLeft;
+    private float _floatingTime = 1;
+    private float _floatingTimer;
 
     void OnEnable()
     {
@@ -52,6 +54,8 @@ public class PlayerController : MonoBehaviour
         FlipSprite();
         CoyoteTimer();
         HandleJump();
+        HandleDoubleJump();
+        HandleFloating();
         GravityDelay();
         CheckUpgrades();
     }
@@ -91,6 +95,32 @@ public class PlayerController : MonoBehaviour
         else if (_coyoteTimer > 0f)
         {
             OnJump?.Invoke();
+        }
+    }
+
+    void HandleDoubleJump()
+    {
+        if (!_frameInput.Jump) return;
+        if (_doubleJumpsLeft > 0)
+        {
+            _doubleJumpsLeft--;
+            OnJump?.Invoke();
+        }
+
+        if (_footCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            _doubleJumpsLeft = _doubleJumps;
+        }
+    }
+
+    void HandleFloating()
+    {
+        if(!_frameInput.Float) return;
+        if (_frameInput.Float || _floatingTime > 0f)
+        {
+            Vector2 playerVelocity = new Vector2(_frameInput.Move.x * _moveSpeed, _rigidbody.linearVelocity.y);
+            _rigidbody.linearVelocity = playerVelocity;
+            _floatingTimer -= Time.deltaTime;
         }
     }
 

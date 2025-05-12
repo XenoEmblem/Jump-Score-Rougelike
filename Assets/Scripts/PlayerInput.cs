@@ -13,6 +13,7 @@ public class PlayerInput : MonoBehaviour
         _playerInputActions = new PlayerInputActions();
         _move = _playerInputActions.Player.Move;
         _jump = _playerInputActions.Player.Jump;
+
     }
     
     void OnEnable()
@@ -36,6 +37,7 @@ public class PlayerInput : MonoBehaviour
         {
             Move = _move.ReadValue<Vector2>(),
             Jump = _jump.WasPressedThisFrame(),
+            Float = _jump.IsPressed()
         };
     }
 }
@@ -44,4 +46,5 @@ public struct FrameInput
 {
     public Vector2 Move;
     public bool Jump;
+    public bool Float;
 }
