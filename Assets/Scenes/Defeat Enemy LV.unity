@@ -23992,6 +23992,10 @@ PrefabInstance:
       propertyPath: bounce
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7554988712869460075, guid: 7bda26a852966824492f1f82b1f93e73, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8910157321480838834, guid: 7bda26a852966824492f1f82b1f93e73, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -24030,6 +24034,10 @@ PrefabInstance:
     - target: {fileID: 2815841452938387124, guid: 8be929f8a07f0294bb4e85d8b8d62246, type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3157609532505878379, guid: 8be929f8a07f0294bb4e85d8b8d62246, type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7206490138581469192, guid: 8be929f8a07f0294bb4e85d8b8d62246, type: 3}
       propertyPath: m_LocalPosition.x

@@ -23,8 +23,9 @@ public class PlayerController : MonoBehaviour
 
     private int _doubleJumps = 0;
     private int _doubleJumpsLeft;
-    private float _floatingTime = 0;
+    private float _floatingTime = 1;
     private float _floatingTimer;
+    private bool _isFloating = false;
 
     void OnEnable()
     {
@@ -54,8 +55,11 @@ public class PlayerController : MonoBehaviour
         HandleJump();
         HandleDoubleJump();
         HandleFloating();
-        GravityDelay();
         CheckUpgrades();
+        if (_isFloating)
+        {
+            GravityDelay();
+        }
     }
 
     void FixedUpdate()
@@ -114,12 +118,20 @@ public class PlayerController : MonoBehaviour
     void HandleFloating()
     {
         if(!_frameInput.Float) return;
-        if (_frameInput.Float || _floatingTime > 0f)
+        if (!_footCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
-            Vector2 playerVelocity = new Vector2(_frameInput.Move.x * _moveSpeed, _rigidbody.linearVelocity.y);
-            _rigidbody.linearVelocity = playerVelocity;
-            _floatingTimer -= Time.deltaTime;
+            if (_frameInput.Float || _floatingTime > 0f)
+            {
+                Debug.Log("floating");
+                _isFloating = true;
+                _floatingTimer -= Time.deltaTime;
+            }
+            else
+            {
+                _isFloating = false;
+            }
         }
+        
     }
 
     void ApplyJumpForce()
