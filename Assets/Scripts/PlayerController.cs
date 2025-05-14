@@ -20,11 +20,10 @@ public class PlayerController : MonoBehaviour
     Animator _animator;
     float _timeInAir, _coyoteTimer;
     Upgrades _upgrades;
-    GameObject _upgradeMenu;
 
-    private int _doubleJumps = 1;
+    private int _doubleJumps = 0;
     private int _doubleJumpsLeft;
-    private float _floatingTime = 1;
+    private float _floatingTime = 0;
     private float _floatingTimer;
 
     void OnEnable()
@@ -44,7 +43,6 @@ public class PlayerController : MonoBehaviour
         _playerInput = GetComponent<PlayerInput>();
         _animator = GetComponent<Animator>();
         _upgrades = GetComponent<Upgrades>();
-        _upgradeMenu = GameObject.Find("UpgradeMenu");
     }
 
     void Update()
@@ -169,13 +167,10 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    public void CheckUpgrades()
+    void CheckUpgrades()
     {
-        if (!_upgradeMenu.activeInHierarchy)
-        {
             _doubleJumps = _upgrades.GetNumOfDoubleJumps();
             _floatingTime = _upgrades.GetFloatingTime();
-        }
     }
     
 }

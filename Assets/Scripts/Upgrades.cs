@@ -30,19 +30,26 @@ public class Upgrades : MonoBehaviour
 
     public void PurchaseDoubleJump()
     {
-        if (_gameState.getScore() >= _currentPriceDoubleJump)
+        if (_gameState.GetScore() >= _currentPriceDoubleJump)
         {
-            _doubleJumpUpgrades++;
-            _currentPriceDoubleJump = _currentPriceDoubleJump + (_priceIncreaseDoubleJump * _doubleJumpUpgrades);
+            if(_doubleJumpUpgrades < _maxNumOfDoubleJumpUpgrades)
+            {_doubleJumpUpgrades++;
+                _gameState.RemoveScore(_currentPriceDoubleJump);
+                _currentPriceDoubleJump = _currentPriceDoubleJump + (_priceIncreaseDoubleJump * _doubleJumpUpgrades);
+            }
         }
     }
 
     public void PurchaseFloating()
     {
-        if (_gameState.getScore() >= _currentPriceFloating)
+        if (_gameState.GetScore() >= _currentPriceFloating)
         {
-            _floatingUpgrades++;
-            _currentPriceFloating = _currentPriceFloating + (_priceIncreaseFloating * _floatingUpgrades);
+            if (_floatingUpgrades < _maxNumOfFloatingUpgrades)
+            {
+                _floatingUpgrades++;
+                _gameState.RemoveScore(_currentPriceFloating);
+                _currentPriceFloating = _currentPriceFloating + (_priceIncreaseFloating * _floatingUpgrades);
+            }
         }
     }
 

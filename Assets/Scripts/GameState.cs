@@ -5,14 +5,13 @@ public class GameState : MonoBehaviour
 {
 
     [SerializeField] TMP_Text _scoreText;
-    [SerializeField] TMP_Text _livesText;
+    [SerializeField] TMP_Text _healthText;
 
-    int _score;
-    int _lives;
-    PlayerController _player;
+    int _score = 99999;
+    int _health;
 
     void Awake()
-    {  
+    {
         int gameStateCount = FindObjectsByType<GameState>(FindObjectsSortMode.None).Length;
 
         if (gameStateCount > 1)
@@ -28,15 +27,14 @@ public class GameState : MonoBehaviour
 
     void Start()
     {
-        _player = FindAnyObjectByType<PlayerController>();
         _scoreText.text = _score.ToString();
-        _livesText.text = _lives.ToString();
+        _healthText.text = _health.ToString();
     }
 
     void Update()
     {
         _scoreText.text = _score.ToString();
-        _livesText.text = _lives.ToString();
+        _healthText.text = _health.ToString();
     }
 
     public void AddScore(int pointsPerDestroyed)
@@ -44,17 +42,22 @@ public class GameState : MonoBehaviour
         _score += pointsPerDestroyed;
     }
 
-    public void RemoveLives()
+    public void RemoveHealth()
     {
-        _lives--;
+        _health--;
     }
 
-    public int getScore()
+    public int GetScore()
     {
         return _score;
     }
 
-    public void DestroyState()
+    public void RemoveScore(int scoreToRemove)
+    {
+        _score -= scoreToRemove;
+    }
+
+public void DestroyState()
     {
         Destroy(gameObject);
     }
