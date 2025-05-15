@@ -41,7 +41,7 @@ public class PlayerInput : MonoBehaviour
         {
             Move = _move.ReadValue<Vector2>(),
             Jump = _jump.WasPressedThisFrame(),
-            Float = _float.IsPressed(),
+            Float = _float.WasPressedThisFrame(),
             Menu = _menu.WasPressedThisFrame()
         };
     }

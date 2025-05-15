@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         HandleDoubleJump();
         HandleFloating();
         CheckUpgrades();
-        if (_isFloating)
+        if (!_isFloating)
         {
             GravityDelay();
         }
@@ -124,12 +124,14 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log("floating");
                 _isFloating = true;
+                Vector2 playerVelocity = new Vector2(_frameInput.Move.x * _moveSpeed, 0);
+                _rigidbody.linearVelocity = playerVelocity;
                 _floatingTimer -= Time.deltaTime;
             }
-            else
-            {
-                _isFloating = false;
-            }
+        }
+        else
+        {
+            _isFloating = false;
         }
         
     }
