@@ -60,6 +60,6 @@ public class Upgrades : MonoBehaviour
 
     public float GetFloatingTime()
     {
-        return (float)(_floatingUpgrades * 1.5);
+        return (float)(_floatingUpgrades * 0.25f);
     }
 }

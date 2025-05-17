@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 4112165922076185656}
   - component: {fileID: 8910157321480838834}
   - component: {fileID: 7554988712869460075}
+  - component: {fileID: 4231087030435215417}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -81,8 +82,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1029763225
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -6447722072507503168, guid: 10f3cacccb0c4c547be76836eba20664, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -151,7 +152,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.02668333, y: 0.0266833}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -161,7 +162,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.8221111, y: 0.9466334}
   m_EdgeRadius: 0
 --- !u!114 &3180259786345745916
 MonoBehaviour:
@@ -223,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3afc1be1ff2b05348a7b5d117a04a9ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounce: 3
+  bounce: 10
 --- !u!70 &8910157321480838834
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -254,7 +255,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -287,4 +288,17 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!114 &4231087030435215417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8931438940253205633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c23a697eb69c64741b97d374873f3d3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 1

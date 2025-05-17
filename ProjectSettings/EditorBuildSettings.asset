@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Defeat Enemy LV.unity
     guid: 6c00a821d35d3644fa342f061418355b
   - enabled: 1
-    path: Assets/Scenes/Score Shop.unity
-    guid: a8d43bd630b19034da5e84c18574cd26
-  - enabled: 1
     path: Assets/Scenes/Settings.unity
     guid: a86f694e88700af4486fcd352935a2dc
   m_configObjects:

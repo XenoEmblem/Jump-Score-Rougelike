@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _maxFallSpeed = -25f;
     [SerializeField] float _gravityDelay = .2f;
     [SerializeField] float _coyoteTime = .2f;
+    [SerializeField] GameObject _upgradeMenu;
 
     PlayerInput _playerInput;
     FrameInput _frameInput;
@@ -20,10 +22,11 @@ public class PlayerController : MonoBehaviour
     Animator _animator;
     float _timeInAir, _coyoteTimer;
     Upgrades _upgrades;
+    
 
     private int _doubleJumps = 0;
     private int _doubleJumpsLeft;
-    private float _floatingTime = 1;
+    private float _floatingTime = 0;
     private float _floatingTimer;
     private bool _isFloating = false;
 
@@ -56,7 +59,12 @@ public class PlayerController : MonoBehaviour
         HandleDoubleJump();
         HandleFloating();
         CheckUpgrades();
+<<<<<<< Updated upstream
         if (!_isFloating)
+=======
+        OpenUpgradeMenu();
+        if (_isFloating)
+>>>>>>> Stashed changes
         {
             GravityDelay();
         }
@@ -117,11 +125,13 @@ public class PlayerController : MonoBehaviour
 
     void HandleFloating()
     {
-        if(!_frameInput.Float) return;
+        if (!_frameInput.Float) return;
         if (!_footCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
-            if (_frameInput.Float || _floatingTime > 0f)
+            _isFloating = true;
+            if(_frameInput.Float && _floatingTimer > 0f)
             {
+<<<<<<< Updated upstream
                 Debug.Log("floating");
                 _isFloating = true;
                 Vector2 playerVelocity = new Vector2(_frameInput.Move.x * _moveSpeed, 0);
@@ -132,10 +142,26 @@ public class PlayerController : MonoBehaviour
         else
         {
             _isFloating = false;
+=======
+                StartCoroutine(DelayThenFloat(0.3f));
+            }
+            else
+            {
+                _isFloating = false;
+                _floatingTimer = _floatingTime;
+            }
+>>>>>>> Stashed changes
         }
-        
     }
 
+    IEnumerator DelayThenFloat(float delay)
+    {
+            yield return new WaitForSeconds(delay);
+            Vector2 playerVelocity = new Vector2(_frameInput.Move.x * _moveSpeed, 0);
+            _rigidbody.linearVelocity = playerVelocity;
+            _floatingTimer -= Time.deltaTime;
+    }
+    
     void ApplyJumpForce()
     {
         _rigidbody.linearVelocity = Vector2.zero;
@@ -178,6 +204,23 @@ public class PlayerController : MonoBehaviour
         else
         {
             _coyoteTimer -= Time.deltaTime;
+        }
+    }
+
+    void OpenUpgradeMenu()
+    {
+        if (_frameInput.Menu)
+        {
+            _upgradeMenu.SetActive(!_upgradeMenu.activeSelf);
+            
+            if (_upgradeMenu.activeSelf)
+            {
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = 1; 
+            }
         }
     }
     
